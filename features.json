@@ -1,56 +1,106 @@
 {
-  "schema": "openplank.features.v1",
-  "version": "0.51-preview",
+  "schema": "openplank.features.v2",
+  "version": "0.51",
   "generatedAt": "2026-05-10",
   "stats": {
-    "linesOfCode": "~50000",
+    "linesOfCode": "~88000",
     "tests": "650+",
-    "modules": 40,
-    "endpoints": 350,
+    "modules": 55,
+    "endpoints": "350+",
     "kiSkills": 18,
     "kiTools": 23
   },
   "implemented": [
-    {"key":"patients","title":"Patientenverwaltung","status":"live"},
-    {"key":"tooth-status","title":"Zahnstatus & Befund","status":"live"},
-    {"key":"bema-goz","title":"BEMA & GOZ Abrechnung","status":"live"},
-    {"key":"hkp-anamnese","title":"HKP & strukturierte Anamnese","status":"live"},
-    {"key":"calendar","title":"Terminkalender","status":"live"},
-    {"key":"ti-kim-epa-erezept","title":"TI / KIM / ePA / eRezept","status":"live"},
-    {"key":"phone-readonly","title":"Telefon-Integration (read-only)","status":"live"},
-    {"key":"dsgvo-export","title":"DSGVO Art. 15 + 20 Export","status":"live"},
-    {"key":"orbital-cockpit","title":"OrbitalView Cockpit","status":"live"},
-    {"key":"voice-mode","title":"Sprachmodus mit Bestätigung","status":"live"},
-    {"key":"smart-objects","title":"Smart Objects (Röntgen, HKP, Termine)","status":"v0.51"},
-    {"key":"ki-skills-schema","title":"KI-Skills in eigenem DB-Schema","status":"v0.51"}
+    {"key":"patients","title":"Patientenverwaltung","status":"live","description":"Stammdaten, GKV/PKV, Anamnese, Familien-Verknüpfungen, Recall, DSGVO-Export"},
+    {"key":"tooth-status","title":"Zahnstatus & Befund","status":"live","description":"Touch-optimiert mit Auto-Advance, KI-gestützte Befundvorschläge"},
+    {"key":"bema-goz","title":"BEMA & GOZ Abrechnung","status":"live","description":"Vollständiger Leistungskatalog, KZV-Quartalsexport"},
+    {"key":"hkp-anamnese","title":"HKP & strukturierte Anamnese","status":"live","description":"HKP-Generator, Allergien-Check vor invasiven Eingriffen"},
+    {"key":"calendar","title":"Terminkalender","status":"live","description":"Räume, Mitarbeiter, Behandlungsketten"},
+    {"key":"ti-kim-epa-erezept","title":"TI / KIM / ePA / eRezept","status":"live","description":"SOAP-Konnektor, KIM-Client, FHIR-R4-ePA, signiertes eRezept (gematik-Stubs)"},
+    {"key":"phone-readonly","title":"Telefon-Integration","status":"live","description":"FritzBox + Auerswald, eingehende Anrufe öffnen Patientenakte (read-only)"},
+    {"key":"dsgvo-export","title":"DSGVO Art. 15 + 20 Export","status":"live","description":"Automatischer Patient-Export als ZIP, vollständig konform"},
+    {"key":"orbital-cockpit","title":"OrbitalView Cockpit","status":"live","description":"Praxis als Atom: Räume = Elektronen, Patienten = Photonen"},
+    {"key":"voice-mode","title":"Sprachmodus mit Bestätigung","status":"live","description":"Confirm-Mode (4s Auto-Commit), 8 Profile, 11 Unit-Tests, audit-pflichtig"},
+    {"key":"smart-objects","title":"Smart Objects","status":"v0.51","description":"Röntgen, HKP, Termine als bewegliche DB-Objekte mit Capabilities + Audit-History"},
+    {"key":"ki-skills-schema","title":"KI-Skills Schema","status":"v0.51","description":"Eigenes DB-Schema für Skills, Tools, Profile-Bindings, getrennt von Patient-Daten"},
+    {"key":"discovery","title":"mDNS Discovery","status":"v0.51","description":"IP-unabhängige Server-Erreichbarkeit, Tablets verbinden automatisch"},
+    {"key":"fleet-manager","title":"FleetManager","status":"v0.51","description":"Multi-Server-Praxis-Verbund mit Heartbeat, Auto-Update-Vorbereitung"},
+    {"key":"atomic-design","title":"Atomic Design Pattern","status":"v0.51","description":"PracticeAtom, FleetAtom, ServerAtom, PatientAnmeldungAtom, BehandlungsAtom"},
+    {"key":"pairing-system","title":"Pairing-Meisterstück","status":"v0.51","description":"QR/Setup-Code, Doctor 14/15 PASS, iPad+TV gepairt, Display-Showroom-Edition"},
+    {"key":"patient-checkout","title":"Patient-Self-Checkout","status":"v0.51","description":"Per-Payment-Access-Token, public Checkout-Route, sicher + datenschutzkonform"},
+    {"key":"idle-lock","title":"Idle-Lock","status":"v0.51","description":"Auto-Logout 5min (Empfang), 10min (App), KZBV 8.2 konform"},
+    {"key":"treatment-append-only","title":"Treatment Append-Only","status":"v0.51","description":"Behandlungsdokumentation unveränderbar, Amendment-Trail, §630f BGB konform"}
   ],
   "architecture": [
-    {"key":"discovery","title":"mDNS Discovery","endpoints":5},
-    {"key":"agent-router","title":"Agent-Router (Multi-Profil)","endpoints":4},
-    {"key":"leveling","title":"Hardware-Leveling Auto-Routing","endpoints":3},
-    {"key":"smart-objects","title":"Smart Objects DB-gestützt","endpoints":9},
-    {"key":"ki-skills","title":"KI-Skills Schema","endpoints":6},
-    {"key":"openclaw-bridge","title":"OpenClaw-Bridge (optional)","endpoints":3}
+    {"key":"discovery","title":"mDNS Discovery","endpoints":5,"description":"IP-unabhängige Erreichbarkeit mit Tailscale-Fallback + Endpoint-Bundle"},
+    {"key":"agent-router","title":"Agent-Router (Multi-Profil)","endpoints":4,"description":"Surface-KI ↔ Core-KI ↔ Specialists, Tool-Scopes pro Profil"},
+    {"key":"leveling","title":"Hardware-Leveling Auto-Routing","endpoints":3,"description":"Erkennt RAM/GPU/NPU, wählt automatisch passendes Modell"},
+    {"key":"smart-objects","title":"Smart Objects DB-gestützt","endpoints":9,"description":"Persistent Objects mit docked/floating/handed-off/archived + Audit"},
+    {"key":"ki-skills","title":"KI-Skills Schema","endpoints":6,"description":"Skills, Tools, Profile-Bindings, Usage-Stats in eigenem Schema"},
+    {"key":"openclaw-bridge","title":"OpenClaw-Bridge (optional)","endpoints":3,"description":"Externe KI-Specialists, Telefon-Domains hard-blockiert"},
+    {"key":"fleet-manager","title":"FleetManager","endpoints":8,"description":"Multi-Server-Praxis-Verbund, Heartbeat, Auto-Discovery zwischen Praxen"},
+    {"key":"orbital-view","title":"OrbitalView Engine","endpoints":4,"description":"Praxis-Visualisierung als Atom, live auf TV/Tablet"},
+    {"key":"atomic-design","title":"Atomic Design Pattern","endpoints":12,"description":"PracticeAtom, FleetAtom, ServerAtom, PatientAnmeldungAtom, BehandlungsAtom (v4 geplant)"}
   ],
   "roadmap": [
-    {"phase":"A","title":"Konsolidierung","scope":"Endpoint-Resolver, Smart-Object-Tools, Admin-UI","effort":"~6h","timeline":"jetzt"},
-    {"phase":"B","title":"Röntgen-KI","scope":"Karies-Detection, Annotation, Smart-Glasses-Push","effort":"~10h","timeline":"v0.52"},
-    {"phase":"C","title":"Smart Calendar","scope":"FloatingWindow, Termine als Smart Objects, Online-Bestätigung","effort":"~10h","timeline":"v0.53"},
-    {"phase":"D","title":"openPlank-clinic","scope":"Multi-Tenant für Unikliniken","effort":"~14h","timeline":"v1.0"}
+    {"phase":"A","title":"Konsolidierung","scope":"Endpoint-Resolver, Smart-Object-Tools, Admin-UI","effort":"~6h","timeline":"2026-05-10 (jetzt)","status":"in_progress"},
+    {"phase":"B","title":"Röntgen-KI","scope":"Karies-Detection, Annotation, Smart-Glasses-Push","effort":"~10h","timeline":"v0.52","status":"planned"},
+    {"phase":"C","title":"Smart Calendar","scope":"FloatingWindow, Termine als Smart Objects, Online-Bestätigung","effort":"~10h","timeline":"v0.53","status":"planned"},
+    {"phase":"D","title":"openPlank-clinic","scope":"Multi-Tenant für Unikliniken, LDAP/SSO, HL7 FHIR, Row-Level-Security","effort":"~14h","timeline":"v1.0","status":"concept"}
   ],
   "concepts": {
-    "klinik": ["Agent-Marketplace","Auto-Update via Fleet","Lokale Inferenz-Cluster","KI-Memory pro Patient"],
-    "praxisOperativ": ["Notfall-Modus","Sterilisations-Tracking","Material-Lager","Recall-Engine 2.0"],
-    "kiTiefer": ["Self-Hosted Fine-Tuning","Multi-Modal Voice + Bild","Federated Learning","Patient-Voice-Klone"],
-    "oekosystem": ["openPlank Federation","Patient-App","Forschungs-Cohort"]
+    "klinik": [
+      "Agent-Marketplace — Specialist-KI als optionale Pakete",
+      "Auto-Update über Fleet — Praxis-Server checken sich gegenseitig",
+      "Lokale Inferenz-Cluster — Multi-Praxis GPU-Pooling",
+      "KI-Memory pro Patient — Self-Hosted Fine-Tuning, LoRA-Praxis-Stil"
+    ],
+    "praxisOperativ": [
+      "Notfall-Modus — Ein Klick: Anamnese + Allergien + Notruf",
+      "Sterilisations-Tracking — KZBV-Pflicht, Voice-gesteuert",
+      "Material-Lager — Auto-Bestellung bei Mindestbestand",
+      "Recall-Engine 2.0 — KI-gestützte Recall-Planung"
+    ],
+    "kiTiefer": [
+      "Self-Hosted Fine-Tuning — Praxis-Stil lernt über Nacht",
+      "Multi-Modal Voice + Bild — Mund-Innenkamera + Stimme kombiniert",
+      "Federated Learning — Mehrere Praxen trainieren gemeinsam",
+      "Patient-Voice-Klone — Anamnese per Stimme authentifizierbar"
+    ],
+    "oekosystem": [
+      "openPlank Federation — Konsile, Notfall-Zugriff, kryptographisch signiert",
+      "Patient-App — Self-Checkout, Online-Termine, eRezept-Zugriff",
+      "Forschungs-Cohort — Anonymisierte Daten für Uni-Forschung (opt-in)"
+    ]
   },
   "compliance": {
-    "bgb630f": "Append-Only-Behandlungsdokumentation",
-    "kzbv82": "Auto-Idle-Lock 5 min",
-    "kzbv75c": "Konsil-Vorbereitung in Federation",
-    "dsgvo15-20": "Patient-Export-Endpoints",
-    "euAiAct50": "KI-Marker auf jedem medical-decision Result"
+    "bgb630f": "Append-Only-Behandlungsdokumentation mit Amendment-Trail",
+    "kzbv82": "Auto-Idle-Lock 5 min (Empfang), 10 min (App)",
+    "sgbV75c": "Konsil-Vorbereitung in Federation, strukturierte Überweisungen",
+    "dsgvo15-20": "Patient-Export-Endpoints, vollautomatisch, ZIP-Format",
+    "euAiAct50": "KI-Marker auf jedem medical-decision Result, Audit-Log pflicht",
+    "roev": "Röntgenbilder SHA-256, Magic-Bytes, Aufbewahrungsfristen-Tracking",
+    "tls": "Self-signed CA, JWT-Token-Wall, granulare RBAC, AES-Verschlüsselung"
+  },
+  "funding": {
+    "nlnet": {
+      "status": "in_preparation",
+      "amount": "€49,500",
+      "deadline": "2026-06-01",
+      "focus": "Open-Source-Infrastruktur, TI/ePA/KIM, Federation"
+    },
+    "prototypeFund": {
+      "status": "planned",
+      "amount": "€47,500",
+      "deadline": "2026-10-01 (Okt-Nov Round)",
+      "focus": "KI-gestützte Befundaufnahme, Voice-Mode"
+    }
   },
   "license": "AGPL-3.0",
-  "repository": "https://github.com/openplank-dev/openplank-dent"
+  "repository": "https://github.com/openplank-dev/openplank-dent",
+  "meta": {
+    "generated_by": "Klaus (openPlank KI-Assistent)",
+    "source": "openplank-dent v0.51 (2026-05-10)",
+    "contact": "GitHub: openplank-dev"
+  }
 }
