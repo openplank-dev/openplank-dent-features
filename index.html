@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>openPlank-dent · Feature-Übersicht für Praxen</title>
+<meta name="description" content="openPlank-dent — Open-Source-Praxisverwaltung für Zahnärzte. Touch-first, KI-durchdrungen, datenschutzkonform. Stand 2026-05-10." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='22'%3E🦷%3C/text%3E%3C/svg%3E" />
+<style>
+  :root{
+    --bg:#0b1220;
+    --bg-2:#111a2e;
+    --panel:#152038;
+    --panel-2:#1c2a48;
+    --accent:#5cd6c1;
+    --accent-2:#7c9eff;
+    --accent-3:#ffb86c;
+    --text:#e7eefc;
+    --muted:#9aa8c4;
+    --border:rgba(255,255,255,.08);
+    --radius:14px;
+    --shadow:0 10px 40px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:linear-gradient(180deg,#0a1020,#0b1424 40%,#0a1020);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Inter,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* ── Top ── */
+  .hero{
+    position:relative;overflow:hidden;
+    padding:96px 24px 64px;
+    text-align:center;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 20% 30%,rgba(92,214,193,.12),transparent 50%),
+      radial-gradient(circle at 80% 70%,rgba(124,158,255,.10),transparent 50%);
+    pointer-events:none;
+  }
+  .badge{
+    display:inline-block;padding:6px 14px;border-radius:999px;
+    background:rgba(92,214,193,.10);color:var(--accent);font-size:13px;
+    border:1px solid rgba(92,214,193,.25);font-weight:500;letter-spacing:.5px;
+  }
+  h1{
+    margin:18px auto 12px;max-width:900px;
+    font-size:clamp(38px,5.6vw,64px);
+    font-weight:700;letter-spacing:-1.2px;line-height:1.05;
+  }
+  h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{
+    max-width:680px;margin:0 auto 28px;
+    font-size:18px;color:var(--muted);
+  }
+  .meta{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:24px;color:var(--muted);font-size:13px}
+  .meta b{color:var(--text);font-weight:600}
+
+  /* ── Stat strip ── */
+  .stats{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:16px;max-width:1080px;margin:48px auto 0;padding:0 24px;
+  }
+  .stat{
+    padding:20px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);text-align:center;
+  }
+  .stat .num{font-size:32px;font-weight:700;letter-spacing:-1px;background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat .lbl{color:var(--muted);font-size:13px;margin-top:6px}
+
+  /* ── Sections ── */
+  section{max-width:1180px;margin:80px auto;padding:0 24px}
+  h2{
+    font-size:clamp(26px,3vw,34px);font-weight:700;letter-spacing:-.5px;
+    margin:0 0 8px;
+  }
+  .h2-eyebrow{color:var(--accent);font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+  .h2-sub{color:var(--muted);max-width:680px;margin:0 0 36px;font-size:16px}
+
+  /* ── Cards grid ── */
+  .grid{
+    display:grid;gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  }
+  .card{
+    padding:24px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    transition:transform .18s ease,border-color .18s ease,background .18s ease;
+    position:relative;
+  }
+  .card:hover{transform:translateY(-3px);border-color:rgba(92,214,193,.4);background:var(--panel-2)}
+  .card .ico{
+    width:44px;height:44px;border-radius:10px;display:grid;place-items:center;
+    background:linear-gradient(135deg,rgba(92,214,193,.18),rgba(124,158,255,.12));
+    font-size:22px;margin-bottom:14px;
+  }
+  .card h3{margin:0 0 8px;font-size:18px;font-weight:600}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+  .pill{
+    display:inline-block;font-size:11px;padding:3px 8px;border-radius:6px;
+    background:rgba(124,158,255,.15);color:var(--accent-2);margin-right:6px;font-weight:500;
+  }
+  .pill.ok{background:rgba(92,214,193,.15);color:var(--accent)}
+  .pill.soon{background:rgba(255,184,108,.15);color:var(--accent-3)}
+
+  /* ── Table-like list ── */
+  .matrix{
+    background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .matrix .row{
+    display:grid;grid-template-columns:1.5fr 2fr 1fr;
+    padding:14px 18px;border-bottom:1px solid var(--border);font-size:14px;align-items:center;
+  }
+  .matrix .row:last-child{border-bottom:none}
+  .matrix .row.head{background:rgba(255,255,255,.03);font-weight:600;color:var(--muted);font-size:12px;letter-spacing:.5px;text-transform:uppercase}
+
+  /* ── Quote ── */
+  .quote{
+    max-width:780px;margin:80px auto 0;padding:32px;text-align:center;
+    background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    font-size:18px;color:var(--text);font-style:italic;
+  }
+  .quote::before{content:"„";font-size:60px;line-height:0;color:var(--accent);margin-right:6px;vertical-align:-12px}
+  .quote::after{content:"“";font-size:60px;line-height:0;color:var(--accent);margin-left:6px;vertical-align:-12px}
+
+  /* ── CTA ── */
+  .cta{
+    margin:80px auto 60px;padding:48px 24px;text-align:center;
+    max-width:1080px;background:linear-gradient(135deg,rgba(92,214,193,.08),rgba(124,158,255,.06));
+    border:1px solid var(--border);border-radius:var(--radius);
+  }
+  .cta h2{margin-bottom:12px}
+  .cta .btn{
+    display:inline-block;padding:14px 28px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    color:#0a1020;border-radius:10px;font-weight:600;margin:8px 6px 0;
+    transition:transform .15s ease;
+  }
+  .cta .btn:hover{transform:translateY(-2px);text-decoration:none}
+  .cta .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+
+  /* ── Footer ── */
+  footer{
+    padding:32px 24px;text-align:center;color:var(--muted);
+    font-size:13px;border-top:1px solid var(--border);
+  }
+  footer a{color:var(--muted)}
+  .tooth{display:inline-block;animation:wiggle 4s ease-in-out infinite}
+  @keyframes wiggle{0%,90%,100%{transform:rotate(0)}93%{transform:rotate(15deg)}96%{transform:rotate(-12deg)}}
+
+  @media(max-width:640px){
+    .matrix .row{grid-template-columns:1fr;gap:6px;padding:14px}
+    .matrix .row.head{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="badge">🦷 Open Source · Stand 2026-05-10 · v0.51 in Vorbereitung</span>
+  <h1>Praxisverwaltung,<br/>die für die <em>Praxis</em> gebaut ist.</h1>
+  <p class="lead">openPlank-dent ist eine Open-Source-Software für Zahnarztpraxen — touch-first, KI-durchdrungen, datenschutzkonform. Entwickelt mit einer realen Praxis als Zielgruppe, nicht im Whiteboard-Vakuum.</p>
+  <div class="meta">
+    <span><b>~50.000</b> Zeilen TypeScript</span>
+    <span>·</span>
+    <span><b>650+</b> Tests grün</span>
+    <span>·</span>
+    <span><b>40+</b> Module</span>
+    <span>·</span>
+    <span><b>23</b> KI-Werkzeuge live</span>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">37</div><div class="lbl">Server-Module</div></div>
+    <div class="stat"><div class="num">350+</div><div class="lbl">REST-Endpoints</div></div>
+    <div class="stat"><div class="num">18</div><div class="lbl">KI-Skills (Stand v0.51)</div></div>
+    <div class="stat"><div class="num">100%</div><div class="lbl">Open Source AGPL</div></div>
+  </div>
+</header>
+
+<!-- ── Was ist das? ── -->
+<section>
+  <div class="h2-eyebrow">Worum es geht</div>
+  <h2>Die Software lernt den Nutzer, nicht umgekehrt.</h2>
+  <p class="h2-sub">openPlank-dent läuft in der Praxis selbst — auf einem Mini-PC, einem Tablet, einem TV. Patientendaten verlassen die Praxis nicht. KI ist eingebaut und reagiert auf Stimme oder Touch. Jeder Klick zählt: maximal zwei Tipper bis zum Ziel.</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="ico">🎯</div>
+      <h3>Touch-first auf jedem Gerät</h3>
+      <p>Tablet, TV im Wartezimmer, Smart-Glasses am Behandlungsstuhl, Empfangs-PC — eine UI passt sich an jeden Bildschirm an, ohne neue Schulung.</p>
+    </div>
+    <div class="card">
+      <div class="ico">🧠</div>
+      <h3>KI live in jedem Surface</h3>
+      <p>Sprachsteuerung mit Bestätigungs-Modus für jede Befund-Aufnahme. Acht Sprach-Profile, 18 Skills, 23 Werkzeuge — alle DSGVO-konform.</p>
+    </div>
+    <div class="card">
+      <div class="ico">🔒</div>
+      <h3>Datenschutz auf medizinischem Niveau</h3>
+      <p>JWT-Token-Wall, granulare RBAC, Append-Only-Behandlungsdokumentation nach §630f BGB, AES-Verschlüsselung, automatischer Idle-Lock nach KZBV 8.2.</p>
+    </div>
+    <div class="card">
+      <div class="ico">📡</div>
+      <h3>Findet sich selbst im Netz</h3>
+      <p>Tablets verbinden sich automatisch mit dem Praxis-Server — egal welche LAN-IP er gerade hat. mDNS-Discovery + Tailscale-Fallback.</p>
+    </div>
+    <div class="card">
+      <div class="ico">⚡</div>
+      <h3>Hardware-bewusst</h3>
+      <p>Praxis-PC mit 32 GB RAM? Wir nutzen ein 32-Milliarden-Parameter-Modell. Edge-Tablet mit 4 GB? Wir wählen automatisch das passende kleinere.</p>
+    </div>
+    <div class="card">
+      <div class="ico">📋</div>
+      <h3>Behandlungsdoku gesetzeskonform</h3>
+      <p>Append-Only-Records, Amendment-Trail, KZBV/BEMA-konforme Quartalsabrechnung, ePA, eRezept, KIM, TI-Konnektor — alles eingebaut.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Schon drin ── -->
+<section>
+  <div class="h2-eyebrow">Bereits implementiert</div>
+  <h2>Was du heute bekommst.</h2>
+  <p class="h2-sub">Stand: v0.50.11 läuft live in einer Praxis-Test-Installation. v0.51 ist in Vorbereitung mit weiteren Architektur-Erweiterungen.</p>
+
+  <div class="grid">
+    <div class="card"><div class="ico">👥</div><h3>Patientenverwaltung</h3><p>Stammdaten, Versicherung GKV/PKV, Anamnese, Familien-Verknüpfungen, Recall-Planung.</p><span class="pill ok">live</span></div>
+    <div class="card"><div class="ico">🦷</div><h3>Zahnstatus & Befund</h3><p>Touch-optimierter Befund-Erfassung mit Auto-Advance. KI sagt Befund vor, du bestätigst per Tipp oder Voice.</p><span class="pill ok">live</span></div>
+    <div class="card"><div class="ico">💊</div><h3>BEMA & GOZ</h3><p>Vollständiger Leistungskatalog. KI schlägt Abrechnung vor, du gibst frei. Quartals-Export für KZV.</p><span class="pill ok">live</span></div>
+    <div class="card"><div class="ico">📋</div><h3>HKP & Anamnese</h3><p>Heil- und Kostenplan-Generator, strukturierte Anamnese mit Allergien-Check vor invasiven Eingriffen.</p><span class="pill ok">live</span></div>
+    <div class="card"><div class="ico">📅</div><h3>Terminkalender</h3><p>Räume, Mitarbeiter, Behandlungsketten. Floating-UI in v0.51 geplant.</p><span class="pill ok">live</span></div>
+    <div class="card"><div class="ico">🩺</div><h3>TI / KIM / ePA / eRezept</h3><p>SOAP-Konnektor-Anbindung, sichere E-Mail über KIM-Clientmodul, FHIR-R4-ePA, signiertes E-Rezept.</p><span class="pill ok">live</span></div>
+    <div class="card"><div class="ico">📞</div><h3>Telefon-Integration</h3><p>FritzBox + Auerswald-Adapter. Eingehende Anrufe öffnen automatisch die Patientenakte.</p><span class="pill ok">live (read-only)</span></div>
+    <div class="card"><div class="ico">📜</div><h3>DSGVO-Export</h3><p>Art. 15 + Art. 20-Exporte vollständig automatisch. Patient drückt einen Knopf, kriegt seine Daten als ZIP.</p><span class="pill ok">live</span></div>
+    <div class="card"><div class="ico">🪟</div><h3>OrbitalView Cockpit</h3><p>Praxis als Atom: Räume sind Elektronen, Patienten sind Photonen, der Server ist der Kern. Live auf jedem TV.</p><span class="pill ok">live</span></div>
+    <div class="card"><div class="ico">🤖</div><h3>23 KI-Werkzeuge</h3><p>Patient suchen, Befund eintragen, Termin anlegen, HKP erstellen, Röntgen anzeigen, Topologie abfragen — und 17 weitere.</p><span class="pill ok">live</span></div>
+    <div class="card"><div class="ico">📦</div><h3>Smart Objects</h3><p>Röntgen, HKP, Termine als bewegliche Objekte: docked → floating → handed_off → archived. Mit voller Audit-History.</p><span class="pill ok">v0.51</span></div>
+    <div class="card"><div class="ico">🎙️</div><h3>Sprachmodus mit Bestätigung</h3><p>Befund per Stimme dokumentieren. Default: Confirm-Mode mit 4-Sekunden-Auto-Commit. Audit-pflichtig.</p><span class="pill ok">live</span></div>
+  </div>
+</section>
+
+<!-- ── Architektur-Highlights ── -->
+<section>
+  <div class="h2-eyebrow">Unter der Haube</div>
+  <h2>Architektur-Highlights v0.51.</h2>
+  <p class="h2-sub">Fünf neue Module, gerade frisch gebaut. Macht openPlank-dent zur Plattform statt nur zur Software.</p>
+
+  <div class="matrix">
+    <div class="row head"><div>Modul</div><div>Was es macht</div><div>Endpunkte</div></div>
+    <div class="row"><div><b>Discovery</b><br/><span class="pill">mDNS</span></div><div>Praxis-Server findet sich selbst im Netz, Tablets verbinden automatisch — egal welche LAN-IP er gerade hat.</div><div>5</div></div>
+    <div class="row"><div><b>Agent-Router</b><br/><span class="pill">Multi-Profil</span></div><div>Surface-KI (Tablet, klein) ↔ Core-KI (Server, groß) ↔ Specialists (Röntgen, Anamnese). Tool-Scopes pro Profil.</div><div>4</div></div>
+    <div class="row"><div><b>Leveling</b><br/><span class="pill">Auto-Routing</span></div><div>Erkennt RAM, GPU, NPU. Wählt automatisch das passende Modell. Beim nächsten Modell-Update merkt es das selbst.</div><div>3</div></div>
+    <div class="row"><div><b>Smart Objects</b><br/><span class="pill">DB-gestützt</span></div><div>Röntgen, HKP, Termine, Befunde, Fotos als bewegliche Objekte mit Capabilities + voller Audit-History.</div><div>9</div></div>
+    <div class="row"><div><b>KI-Skills</b><br/><span class="pill">Eigenes Schema</span></div><div>Skills, Tools, Profile-Bindings, Usage-Statistik in eigenem DB-Schema getrennt von Patient-Daten.</div><div>6</div></div>
+    <div class="row"><div><b>OpenClaw-Bridge</b><br/><span class="pill">Optional</span></div><div>Externe KI-Specialists einbinden (Bilderkennung, OPG-Analyse). Telefon-Domains hard-blockiert.</div><div>3</div></div>
+  </div>
+</section>
+
+<!-- ── Roadmap ── -->
+<section>
+  <div class="h2-eyebrow">Wohin die Reise geht</div>
+  <h2>Phase A → D: was als nächstes kommt.</h2>
+  <p class="h2-sub">Klarer Fahrplan für die nächsten ~40 Stunden Entwicklung.</p>
+
+  <div class="matrix">
+    <div class="row head"><div>Phase</div><div>Inhalt</div><div>Aufwand</div></div>
+    <div class="row"><div><b>Phase A — Konsolidierung</b><br/><span class="pill ok">jetzt</span></div><div>Endpoint-Resolver verdrahten, KI-Tools auf Smart Objects, Admin-UI-Pages für Discovery/Leveling/Skills.</div><div>~6h</div></div>
+    <div class="row"><div><b>Phase B — Röntgen-KI</b><br/><span class="pill soon">v0.52</span></div><div>Erstes Specialist-Paket: Karies-Detection, Annotation-Suggest, Compare-with-Previous. Smart-Glasses-Push.</div><div>~10h</div></div>
+    <div class="row"><div><b>Phase C — Smart Calendar</b><br/><span class="pill soon">v0.53</span></div><div>Floating-Calendar UI, Termine als Smart Objects, Drag auf Wartezimmer-TV, Online-Bestätigung.</div><div>~10h</div></div>
+    <div class="row"><div><b>Phase D — openPlank-clinic</b><br/><span class="pill soon">v1.0</span></div><div>Multi-Tenant-Variante für Universitätskliniken. Eigenes Repo. LDAP/SSO, HL7 FHIR, Row-Level-Security.</div><div>~14h</div></div>
+  </div>
+</section>
+
+<!-- ── Konzeptideen ── -->
+<section>
+  <div class="h2-eyebrow">Längerfristige Vision</div>
+  <h2>14 Konzeptideen, vier Cluster.</h2>
+  <p class="h2-sub">Ideen aus realer Praxis-Diskussion, alle datenschutz-konform, alle einzeln aktivierbar.</p>
+
+  <div class="grid">
+    <div class="card"><div class="ico">🛒</div><h3>Agent-Marketplace</h3><p>Specialist-KI als optionale Pakete. Praxis aktiviert was sie braucht. Update-Zyklen unabhängig vom Core.</p></div>
+    <div class="card"><div class="ico">🌐</div><h3>Auto-Update über Fleet</h3><p>Praxis-Server checken sich gegenseitig. „Praxis Kösching hat v0.52, ich habe v0.51 → updaten?"</p></div>
+    <div class="card"><div class="ico">⚡</div><h3>Lokale Inferenz-Cluster</h3><p>Mehrere Praxis-PCs bündeln ihre GPUs. Kleinere Praxis hat mehr KI-Power durch Verbund.</p></div>
+    <div class="card"><div class="ico">🚨</div><h3>Notfall-Modus</h3><p>Ein Klick, sofort Anamnese + Allergien + Medikamente + Notruf-Nummer + Rea-Protokoll auf dem Bildschirm.</p></div>
+    <div class="card"><div class="ico">🧪</div><h3>Sterilisations-Tracking</h3><p>KZBV-Pflicht. Voice: „ich nutze Tray B12" → Server bucht. Per Behandlung, per Charge, automatisch.</p></div>
+    <div class="card"><div class="ico">🎓</div><h3>Self-Hosted Fine-Tuning</h3><p>LoRA-Training auf praxis-eigenen Korrekturen. Über Nacht. Nichts verlässt den Praxis-Server.</p></div>
+    <div class="card"><div class="ico">📷</div><h3>Multi-Modal Voice + Bild</h3><p>Mund-Innenkamera + Stimme. KI sagt: „Karies an 36 distal sehe ich auch, hier ist die Nahaufnahme."</p></div>
+    <div class="card"><div class="ico">🔬</div><h3>Federated Learning</h3><p>Mehrere Praxen trainieren gemeinsam ein besseres Karies-Detection-Modell — ohne Roh-Daten zu teilen.</p></div>
+    <div class="card"><div class="ico">🤝</div><h3>openPlank Federation</h3><p>Konsile, Notfall-Zugriff, Überweisungen — direkt zwischen Praxen, kryptographisch signiert, Patient zustimmend.</p></div>
+  </div>
+</section>
+
+<!-- ── Quote ── -->
+<section>
+  <div class="quote">
+    Nicht der Mensch lernt das Programm — das Programm lernt den Nutzer.
+  </div>
+  <p style="text-align:center;color:var(--muted);font-size:13px;margin-top:12px">openPlank UI-Credo</p>
+</section>
+
+<!-- ── CTA ── -->
+<div class="cta">
+  <h2>Open Source. Open Roadmap. Real Practice.</h2>
+  <p style="color:var(--muted);max-width:560px;margin:0 auto 24px">Code, Issues, Pull Requests, Specs — alles öffentlich. Werkzeug, das in der Praxis lebt, nicht im Pitch Deck.</p>
+  <a class="btn" href="https://github.com/openplank-dev/openplank-dent">GitHub Repository</a>
+  <a class="btn ghost" href="./features.json">Maschinen-Manifest (JSON)</a>
+</div>
+
+<footer>
+  <span class="tooth">🦷</span> openPlank-dent · Open Source AGPL · Stand 2026-05-10 · <a href="https://github.com/openplank-dev/openplank-dent">github.com/openplank-dev/openplank-dent</a>
+</footer>
+
+</body>
+</html>

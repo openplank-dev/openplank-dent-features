@@ -1,0 +1,56 @@
+{
+  "schema": "openplank.features.v1",
+  "version": "0.51-preview",
+  "generatedAt": "2026-05-10",
+  "stats": {
+    "linesOfCode": "~50000",
+    "tests": "650+",
+    "modules": 40,
+    "endpoints": 350,
+    "kiSkills": 18,
+    "kiTools": 23
+  },
+  "implemented": [
+    {"key":"patients","title":"Patientenverwaltung","status":"live"},
+    {"key":"tooth-status","title":"Zahnstatus & Befund","status":"live"},
+    {"key":"bema-goz","title":"BEMA & GOZ Abrechnung","status":"live"},
+    {"key":"hkp-anamnese","title":"HKP & strukturierte Anamnese","status":"live"},
+    {"key":"calendar","title":"Terminkalender","status":"live"},
+    {"key":"ti-kim-epa-erezept","title":"TI / KIM / ePA / eRezept","status":"live"},
+    {"key":"phone-readonly","title":"Telefon-Integration (read-only)","status":"live"},
+    {"key":"dsgvo-export","title":"DSGVO Art. 15 + 20 Export","status":"live"},
+    {"key":"orbital-cockpit","title":"OrbitalView Cockpit","status":"live"},
+    {"key":"voice-mode","title":"Sprachmodus mit Bestätigung","status":"live"},
+    {"key":"smart-objects","title":"Smart Objects (Röntgen, HKP, Termine)","status":"v0.51"},
+    {"key":"ki-skills-schema","title":"KI-Skills in eigenem DB-Schema","status":"v0.51"}
+  ],
+  "architecture": [
+    {"key":"discovery","title":"mDNS Discovery","endpoints":5},
+    {"key":"agent-router","title":"Agent-Router (Multi-Profil)","endpoints":4},
+    {"key":"leveling","title":"Hardware-Leveling Auto-Routing","endpoints":3},
+    {"key":"smart-objects","title":"Smart Objects DB-gestützt","endpoints":9},
+    {"key":"ki-skills","title":"KI-Skills Schema","endpoints":6},
+    {"key":"openclaw-bridge","title":"OpenClaw-Bridge (optional)","endpoints":3}
+  ],
+  "roadmap": [
+    {"phase":"A","title":"Konsolidierung","scope":"Endpoint-Resolver, Smart-Object-Tools, Admin-UI","effort":"~6h","timeline":"jetzt"},
+    {"phase":"B","title":"Röntgen-KI","scope":"Karies-Detection, Annotation, Smart-Glasses-Push","effort":"~10h","timeline":"v0.52"},
+    {"phase":"C","title":"Smart Calendar","scope":"FloatingWindow, Termine als Smart Objects, Online-Bestätigung","effort":"~10h","timeline":"v0.53"},
+    {"phase":"D","title":"openPlank-clinic","scope":"Multi-Tenant für Unikliniken","effort":"~14h","timeline":"v1.0"}
+  ],
+  "concepts": {
+    "klinik": ["Agent-Marketplace","Auto-Update via Fleet","Lokale Inferenz-Cluster","KI-Memory pro Patient"],
+    "praxisOperativ": ["Notfall-Modus","Sterilisations-Tracking","Material-Lager","Recall-Engine 2.0"],
+    "kiTiefer": ["Self-Hosted Fine-Tuning","Multi-Modal Voice + Bild","Federated Learning","Patient-Voice-Klone"],
+    "oekosystem": ["openPlank Federation","Patient-App","Forschungs-Cohort"]
+  },
+  "compliance": {
+    "bgb630f": "Append-Only-Behandlungsdokumentation",
+    "kzbv82": "Auto-Idle-Lock 5 min",
+    "kzbv75c": "Konsil-Vorbereitung in Federation",
+    "dsgvo15-20": "Patient-Export-Endpoints",
+    "euAiAct50": "KI-Marker auf jedem medical-decision Result"
+  },
+  "license": "AGPL-3.0",
+  "repository": "https://github.com/openplank-dev/openplank-dent"
+}
