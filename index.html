@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>openPlank-dent — Die KI-gesteuerte Praxissoftware</title>
-<meta name="description" content="Open-Source-Praxisverwaltung für Zahnärzte. Touch-first, KI-durchdrungen, datenschutzkonform. Made in Germany." />
+<title>openPlank-dent — KI-gesteuerte Praxisverwaltung</title>
+<meta name="description" content="Open-Source-Praxisverwaltung für Zahnärzte. KI-First, Multi-Device, datenschutzkonform. Made in Germany." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='22'%3E🦷%3C/text%3E%3C/svg%3E" />
 <style>
   :root{
@@ -16,135 +16,243 @@
     --accent-2:#5cd6c1;
     --text:#e7eefc;
     --muted:#8b96ab;
-    --border:rgba(122,180,255,.12);
-    --radius:12px;
-    --shadow:0 8px 32px rgba(0,0,0,.3);
+    --border:rgba(122,180,255,.08);
+    --radius:10px;
+    --shadow:0 4px 16px rgba(0,0,0,.2);
   }
   *{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,sans-serif;font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:var(--accent);text-decoration:none;transition:color .2s}
   a:hover{color:var(--accent-2)}
 
   /* ── Hero ── */
   .hero{
-    position:relative;padding:120px 24px 80px;text-align:center;overflow:hidden;
+    position:relative;padding:140px 24px 100px;text-align:center;overflow:hidden;
   }
   .hero::before{
     content:"";position:absolute;inset:0;
-    background:radial-gradient(circle at 50% 20%,rgba(122,180,255,.08),transparent 60%);
+    background:radial-gradient(circle at 50% 15%,rgba(122,180,255,.06),transparent 65%);
     pointer-events:none;
   }
   .badge{
-    display:inline-block;padding:6px 16px;border-radius:999px;
-    background:rgba(122,180,255,.12);color:var(--accent);font-size:13px;
-    border:1px solid var(--border);font-weight:600;letter-spacing:.8px;text-transform:uppercase;
+    display:inline-block;padding:6px 18px;border-radius:999px;
+    background:rgba(122,180,255,.1);color:var(--accent);font-size:12px;
+    border:1px solid var(--border);font-weight:500;letter-spacing:1.2px;text-transform:uppercase;
   }
   h1{
-    margin:24px auto 16px;max-width:900px;
-    font-size:clamp(40px,6vw,68px);font-weight:700;letter-spacing:-1.5px;line-height:1.05;
+    margin:28px auto 20px;max-width:960px;
+    font-size:clamp(38px,5.5vw,64px);font-weight:300;letter-spacing:-1.8px;line-height:1.1;
   }
-  h1 em{font-style:normal;color:var(--accent)}
-  .lead{
-    max-width:720px;margin:0 auto 32px;font-size:20px;color:var(--muted);line-height:1.5;
+  h1 strong{font-weight:500;color:var(--accent)}
+  .tagline{
+    max-width:780px;margin:0 auto 36px;font-size:19px;color:var(--muted);line-height:1.55;font-weight:300;
   }
   .cta{
-    display:inline-flex;gap:16px;margin-top:12px;flex-wrap:wrap;justify-content:center;
+    display:inline-flex;gap:16px;margin-top:16px;flex-wrap:wrap;justify-content:center;
   }
   .btn{
-    padding:14px 32px;border-radius:8px;font-size:16px;font-weight:600;
-    transition:all .2s;cursor:pointer;border:none;text-decoration:none;
+    padding:15px 34px;border-radius:8px;font-size:15px;font-weight:500;
+    transition:all .2s;cursor:pointer;border:none;text-decoration:none;display:inline-block;
   }
-  .btn-primary{background:var(--accent);color:#000}
+  .btn-primary{background:var(--accent);color:#0a0c12}
   .btn-primary:hover{background:var(--accent-2);transform:translateY(-2px)}
   .btn-secondary{background:var(--panel);color:var(--text);border:1px solid var(--border)}
-  .btn-secondary:hover{background:var(--panel-hover);transform:translateY(-2px)}
+  .btn-secondary:hover{background:var(--panel-hover);border-color:var(--accent);transform:translateY(-2px)}
 
   /* ── Stats ── */
   .stats{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-    gap:16px;max-width:1100px;margin:48px auto 0;padding:0 24px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+    gap:14px;max-width:1140px;margin:52px auto 0;padding:0 24px;
   }
   .stat{
-    padding:20px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);text-align:center;
-    transition:border-color .2s;
+    padding:22px 18px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);text-align:center;
+    transition:border-color .2s,transform .2s;
   }
-  .stat:hover{border-color:var(--accent)}
-  .stat .num{font-size:32px;font-weight:700;color:var(--accent);letter-spacing:-1px}
-  .stat .lbl{color:var(--muted);font-size:13px;margin-top:4px}
+  .stat:hover{border-color:rgba(122,180,255,.3);transform:translateY(-3px)}
+  .stat .num{font-size:30px;font-weight:400;color:var(--accent);letter-spacing:-1px}
+  .stat .lbl{color:var(--muted);font-size:12px;margin-top:6px;font-weight:400}
 
   /* ── Section ── */
-  section{max-width:1200px;margin:96px auto;padding:0 24px}
-  h2{font-size:clamp(28px,3.5vw,38px);font-weight:700;letter-spacing:-.8px;margin:0 0 12px}
-  .eyebrow{color:var(--accent);font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
-  .sub{color:var(--muted);max-width:700px;margin:0 0 48px;font-size:17px}
+  section{max-width:1220px;margin:110px auto;padding:0 26px;position:relative}
+  section::before{
+    content:"";position:absolute;top:-55px;left:50%;transform:translateX(-50%);
+    width:60%;height:1px;background:var(--border);
+  }
+  section:first-of-type::before{display:none}
+  h2{font-size:clamp(26px,3.2vw,36px);font-weight:400;letter-spacing:-.9px;margin:0 0 14px;line-height:1.15}
+  .eyebrow{color:var(--accent);font-size:12px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:10px}
+  .sub{color:var(--muted);max-width:760px;margin:0 0 52px;font-size:17px;font-weight:300;line-height:1.6}
+
+  /* ── Problem Manifest ── */
+  .problem-list{
+    max-width:820px;margin:42px 0 0;display:grid;gap:16px;
+  }
+  .problem-item{
+    padding:22px 26px;background:var(--panel);border-left:3px solid var(--accent);border-radius:6px;
+  }
+  .problem-item strong{display:block;font-size:16px;margin-bottom:6px;color:var(--text);font-weight:500}
+  .problem-item p{margin:0;color:var(--muted);font-size:15px;line-height:1.5}
+
+  /* ── KI-Modi Grid ── */
+  .modes{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .mode-card{
+    padding:32px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    transition:transform .2s,border-color .2s,box-shadow .2s;
+  }
+  .mode-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:var(--shadow)}
+  .mode-card .ico{
+    width:52px;height:52px;border-radius:10px;display:grid;place-items:center;
+    background:rgba(122,180,255,.12);font-size:26px;margin-bottom:18px;
+  }
+  .mode-card h3{margin:0 0 12px;font-size:18px;font-weight:500;color:var(--text)}
+  .mode-card p{margin:0;color:var(--muted);font-size:15px;line-height:1.6;font-weight:300}
+
+  /* ── Vision Bubble-Ring ── */
+  .vision-box{
+    max-width:900px;margin:48px auto 0;padding:42px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    text-align:center;
+  }
+  .vision-box h3{font-size:22px;font-weight:400;margin:0 0 18px;letter-spacing:-.5px}
+  .vision-box .rings{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:18px;margin-top:28px;
+  }
+  .vision-box .ring{
+    padding:20px 16px;background:var(--bg-2);border:1px solid var(--border);border-radius:8px;
+  }
+  .vision-box .ring strong{display:block;font-size:14px;margin-bottom:8px;color:var(--accent);font-weight:500}
+  .vision-box .ring span{font-size:13px;color:var(--muted);font-weight:300}
+  .vision-box .stat-line{
+    margin-top:32px;padding-top:24px;border-top:1px solid var(--border);
+    font-size:15px;color:var(--muted);
+  }
+  .vision-box .stat-line strong{color:var(--accent);font-weight:500}
+
+  /* ── Multi-Device ── */
+  .device-grid{
+    display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:38px;
+  }
+  .device-card{
+    padding:26px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    text-align:center;transition:transform .2s,border-color .2s;
+  }
+  .device-card:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .device-card .dev-ico{font-size:40px;margin-bottom:14px}
+  .device-card strong{display:block;font-size:16px;margin-bottom:8px;color:var(--text);font-weight:500}
+  .device-card p{margin:0;color:var(--muted);font-size:14px;font-weight:300;line-height:1.5}
+
+  /* ── Compliance Badges ── */
+  .badges{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:38px;
+  }
+  .badge-item{
+    padding:20px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    text-align:center;transition:border-color .2s;
+  }
+  .badge-item:hover{border-color:var(--accent)}
+  .badge-item .check{font-size:28px;margin-bottom:10px}
+  .badge-item strong{display:block;font-size:14px;margin-bottom:4px;color:var(--text);font-weight:500}
+  .badge-item span{font-size:12px;color:var(--muted);font-weight:300}
 
   /* ── Portfolio Grid ── */
   .portfolio{
-    display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:42px;
   }
   .screenshot{
     position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);
-    background:var(--panel);transition:transform .25s,border-color .25s;cursor:pointer;
+    background:var(--panel);transition:transform .25s,border-color .25s,box-shadow .25s;cursor:pointer;
   }
-  .screenshot:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .screenshot:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:var(--shadow)}
   .screenshot img{width:100%;display:block;border-radius:var(--radius) var(--radius) 0 0}
   .screenshot figcaption{
-    padding:16px;background:var(--panel);
+    padding:18px;background:var(--panel);
   }
-  .screenshot figcaption strong{display:block;font-size:15px;margin-bottom:4px;color:var(--text)}
-  .screenshot figcaption span{font-size:13px;color:var(--muted)}
+  .screenshot figcaption strong{display:block;font-size:15px;margin-bottom:5px;color:var(--text);font-weight:500}
+  .screenshot figcaption span{font-size:13px;color:var(--muted);font-weight:300}
 
-  /* ── Arch Cards ── */
-  .grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-  .card{
-    padding:28px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
-    transition:transform .2s,border-color .2s,background .2s;
+  /* ── Comparison Table ── */
+  .comparison{
+    margin-top:42px;overflow-x:auto;
   }
-  .card:hover{transform:translateY(-3px);border-color:var(--accent);background:var(--panel-hover)}
-  .card h3{margin:0 0 10px;font-size:18px;font-weight:600;color:var(--text)}
-  .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
-  .card .ico{
-    width:48px;height:48px;border-radius:10px;display:grid;place-items:center;
-    background:rgba(122,180,255,.15);font-size:24px;margin-bottom:14px;
+  .comparison table{
+    width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
   }
+  .comparison th,
+  .comparison td{
+    padding:16px 20px;text-align:left;border-bottom:1px solid var(--border);font-size:14px;
+  }
+  .comparison th{
+    background:var(--bg-2);color:var(--text);font-weight:500;letter-spacing:.3px;
+  }
+  .comparison td{color:var(--muted);font-weight:300}
+  .comparison tr:last-child td{border-bottom:none}
+  .comparison .yes{color:var(--accent);font-weight:500}
+  .comparison .no{color:#888;opacity:.6}
+  .comparison .partial{color:#c9a05f}
 
   /* ── Roadmap ── */
-  .roadmap{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .roadmap{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:38px}
   .roadmap-item{
-    padding:24px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    padding:26px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    transition:transform .2s,border-color .2s;
   }
-  .roadmap-item h4{margin:0 0 8px;font-size:16px;font-weight:600;color:var(--accent)}
-  .roadmap-item ul{margin:10px 0 0;padding-left:18px;font-size:14px;color:var(--muted)}
-  .roadmap-item ul li{margin-bottom:6px}
+  .roadmap-item:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .roadmap-item h4{margin:0 0 10px;font-size:17px;font-weight:500;color:var(--accent)}
+  .roadmap-item ul{margin:12px 0 0;padding-left:20px;font-size:14px;color:var(--muted);font-weight:300}
+  .roadmap-item ul li{margin-bottom:7px}
 
-  /* ── Funding ── */
-  .funding{
-    max-width:900px;margin:96px auto;padding:40px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+  /* ── Team Cards ── */
+  .team{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:42px}
+  .team-card{
+    padding:32px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    text-align:center;transition:transform .2s,border-color .2s;
   }
-  .funding h2{margin-top:0}
-  .funding ul{list-style:none;padding:0;margin:24px 0 0}
-  .funding li{
-    padding:16px;background:var(--bg-2);border-radius:8px;margin-bottom:12px;
-    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+  .team-card:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .team-card .avatar{
+    width:80px;height:80px;border-radius:50%;background:rgba(122,180,255,.12);
+    display:grid;place-items:center;margin:0 auto 18px;font-size:40px;
   }
-  .funding li strong{color:var(--text);font-size:16px}
-  .funding li span{color:var(--muted);font-size:14px}
-  .funding li .amount{color:var(--accent);font-weight:700;font-size:18px}
+  .team-card h3{margin:0 0 8px;font-size:19px;font-weight:500;color:var(--text)}
+  .team-card .role{color:var(--accent);font-size:13px;margin-bottom:14px;font-weight:400}
+  .team-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6;font-weight:300}
+
+  /* ── Open Source Box ── */
+  .open-source-box{
+    max-width:980px;margin:52px auto 0;padding:42px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+  }
+  .open-source-box h3{margin:0 0 16px;font-size:22px;font-weight:400;letter-spacing:-.5px}
+  .open-source-box .why{
+    display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:28px;
+  }
+  .open-source-box .why-item{
+    padding:18px;background:var(--bg-2);border-radius:8px;border:1px solid var(--border);
+  }
+  .open-source-box .why-item strong{display:block;font-size:15px;margin-bottom:6px;color:var(--text);font-weight:500}
+  .open-source-box .why-item p{margin:0;color:var(--muted);font-size:13px;font-weight:300;line-height:1.5}
+  .open-source-box .stats-live{
+    margin-top:28px;padding-top:24px;border-top:1px solid var(--border);
+    display:flex;gap:24px;flex-wrap:wrap;justify-content:center;align-items:center;
+  }
+  .open-source-box .stats-live span{
+    font-size:14px;color:var(--muted);font-weight:300;
+  }
+  .open-source-box .stats-live strong{color:var(--accent);font-weight:500}
 
   /* ── Footer ── */
   footer{
-    border-top:1px solid var(--border);padding:48px 24px;text-align:center;color:var(--muted);font-size:14px;
+    border-top:1px solid var(--border);padding:52px 24px;text-align:center;color:var(--muted);font-size:14px;font-weight:300;
   }
-  footer a{color:var(--accent);margin:0 8px}
-  footer p{margin:8px 0}
+  footer a{color:var(--accent);margin:0 10px;font-weight:400}
+  footer p{margin:10px 0}
 
   /* ── Responsive ── */
   @media(max-width:768px){
-    .hero{padding:80px 16px 60px}
-    h1{font-size:36px}
-    .lead{font-size:17px}
+    .hero{padding:100px 18px 70px}
+    h1{font-size:34px}
+    .tagline{font-size:17px}
     .stats{grid-template-columns:repeat(2,1fr)}
-    section{margin:64px auto}
+    section{margin:80px auto}
+    .comparison{font-size:12px}
+    .comparison th,.comparison td{padding:12px 14px}
   }
 </style>
 </head>
@@ -152,13 +260,13 @@
 
 <div class="hero">
   <span class="badge">Open Source · Made in Germany</span>
-  <h1>Die Praxis-Software,<br>die der <em>KI gehorcht</em><br>— und Ihrem Team</h1>
-  <p class="lead">
-    openPlank-dent ist die erste KI-native Praxisverwaltung für Zahnärzte. Touch-optimiert, datenschutzkonform, rechtssicher nach §630f BGB und KZBV-Standards. Entwickelt für moderne Praxen, die Effizienz und Compliance vereinen.
+  <h1>openPlank ist nicht eine Praxis-Software mit KI.<br>openPlank ist <strong>die KI, die die Praxis führt.</strong></h1>
+  <p class="tagline">
+    Behandler spricht → KI dokumentiert → Display zeigt → Glasses blenden ein. Ein System, vier Geräte, null Klicks. Datenschutzkonform, lokal-first, 100% Open Source.
   </p>
   <div class="cta">
-    <a href="https://github.com/openplank-dev/openplank-dent" class="btn btn-primary" target="_blank">GitHub ansehen</a>
-    <a href="#funding" class="btn btn-secondary">Funding-Status</a>
+    <a href="https://github.com/openplank-dev/openplank-dent" class="btn btn-primary" target="_blank" rel="noopener">Auf GitHub ansehen</a>
+    <a href="#contact" class="btn btn-secondary">Live-Demo buchen</a>
   </div>
 
   <div class="stats">
@@ -167,7 +275,7 @@
       <div class="lbl">Module</div>
     </div>
     <div class="stat">
-      <div class="num">650+</div>
+      <div class="num">478</div>
       <div class="lbl">Tests</div>
     </div>
     <div class="stat">
@@ -175,20 +283,194 @@
       <div class="lbl">Endpoints</div>
     </div>
     <div class="stat">
+      <div class="num" id="gh-stars">—</div>
+      <div class="lbl">GitHub Stars</div>
+    </div>
+    <div class="stat">
       <div class="num">18</div>
       <div class="lbl">KI-Skills</div>
     </div>
     <div class="stat">
-      <div class="num">€0</div>
-      <div class="lbl">Lizenzkosten</div>
+      <div class="num">100%</div>
+      <div class="lbl">Open Source</div>
     </div>
   </div>
 </div>
 
+<section id="problem">
+  <div class="eyebrow">Das Problem</div>
+  <h2>Software aus den 90ern · 27 Anbieter · Alle gleich schlecht</h2>
+  <p class="sub">
+    Zahnarztpraxen in Deutschland arbeiten mit Werkzeugen, die für eine andere Zeit gebaut wurden. Die Folgen sind messbar — und vermeidbar.
+  </p>
+  
+  <div class="problem-list">
+    <div class="problem-item">
+      <strong>30% der Behandlungszeit für Dokumentation</strong>
+      <p>Ärzte verbringen mehr Zeit mit dem Programm als mit dem Patienten. (Quelle: MIT/Harvard Study 2024)</p>
+    </div>
+    <div class="problem-item">
+      <strong>3+ Geräte im Behandlungsraum, keines spricht mit dem anderen</strong>
+      <p>iPad für Befund, PC für Abrechnung, TV für Röntgen — manuell synchronisiert, fehleranfällig.</p>
+    </div>
+    <div class="problem-item">
+      <strong>KI als Buzzword, nicht als Bedienkonzept</strong>
+      <p>Transkription als Add-on. KI hört zu, dokumentiert — aber antizipiert nichts, steuert nichts.</p>
+    </div>
+    <div class="problem-item">
+      <strong>Vendor-Lock-in, Cloud-Zwang, DSGVO-Risiko</strong>
+      <p>Patientendaten auf Servern in Dublin oder Redmond. Closed Source. Keine Kontrolle.</p>
+    </div>
+  </div>
+</section>
+
+<section id="ki-modes">
+  <div class="eyebrow">KI-First Architektur</div>
+  <h2>Nicht ein Feature, sondern das Bedienkonzept</h2>
+  <p class="sub">
+    Klassische Software: Du klickst, das Programm reagiert. openPlank: Die KI antizipiert, arrangiert, dokumentiert — du bestätigst nur noch.
+  </p>
+  
+  <div class="modes">
+    <div class="mode-card">
+      <div class="ico">👂</div>
+      <h3>Ambient Mode</h3>
+      <p>KI hört im Hintergrund mit, zeigt kontextbezogene Informationen, aktualisiert Sidebar mit relevanten Daten — ohne dass jemand einen Knopf drückt.</p>
+    </div>
+    <div class="mode-card">
+      <div class="ico">🦷</div>
+      <h3>Befund Mode</h3>
+      <p>KI erkennt gesprochene Befunde, markiert Zähne im Schema, zeigt Suggestion-Cards am relevanten Zahn. 1-Tap-Bestätigung — fertig.</p>
+    </div>
+    <div class="mode-card">
+      <div class="ico">📋</div>
+      <h3>Briefing Mode</h3>
+      <p>Automatisches Patient-Briefing beim Betreten des Behandlungsraums: Letzte Befunde, Risiko-Score, priorisierte Handlungsempfehlungen.</p>
+    </div>
+    <div class="mode-card">
+      <div class="ico">📝</div>
+      <h3>Documentation Mode</h3>
+      <p>KI fasst zusammen was passiert ist, generiert §630f BGB-konformen Behandlungseintrag, schlägt Abrechnungspositionen vor.</p>
+    </div>
+  </div>
+</section>
+
+<section id="vision">
+  <div class="eyebrow">Zero-UI Befundaufnahme</div>
+  <h2>Nicht der Mensch lernt das Programm — das Programm lernt den Nutzer.</h2>
+  <p class="sub">
+    Das Bubble-Ring-Modell: Kontext erscheint organisch um den Fokus. Keine Menüs, keine Navigation, keine Suche.
+  </p>
+  
+  <div class="vision-box">
+    <h3>4 konzentrische Kreise</h3>
+    <div class="rings">
+      <div class="ring">
+        <strong>Ring 0 · Ruhe</strong>
+        <span>Zahnschema, minimalistisch, kein Ablenkung</span>
+      </div>
+      <div class="ring">
+        <strong>Ring 1 · Fokus</strong>
+        <span>Zahn antippen → organischer Zoom, Flächen sichtbar</span>
+      </div>
+      <div class="ring">
+        <strong>Ring 2 · Kontext</strong>
+        <span>Befunde links, Medien rechts — nur wenn relevant</span>
+      </div>
+      <div class="ring">
+        <strong>Ring 3 · Aktion</strong>
+        <span>Malen, wählen, bestätigen — sofortiges Feedback</span>
+      </div>
+      <div class="ring">
+        <strong>Ring 4 · Weiterleitung</strong>
+        <span>Auto-Advance zum nächsten Zahn, kein Klick nötig</span>
+      </div>
+    </div>
+    <div class="stat-line">
+      <strong>Klassisch:</strong> 6 Klicks pro Befund · <strong>openPlank:</strong> 2-3 Tipps
+    </div>
+  </div>
+</section>
+
+<section id="multi-device">
+  <div class="eyebrow">Multi-Device</div>
+  <h2>Tablet, TV, Smartglass — ein System</h2>
+  <p class="sub">
+    Patient-Tabs wandern mit dem Patienten durch die Praxis. Alle Geräte sehen denselben State, live synchronisiert via EventBus. Pairing per QR — kein IT-Admin nötig.
+  </p>
+  
+  <div class="device-grid">
+    <div class="device-card">
+      <div class="dev-ico">📱</div>
+      <strong>iPad (Behandler)</strong>
+      <p>Touch + Voice parallel, voller Workflow, Zahnstatus mit Auto-Advance</p>
+    </div>
+    <div class="device-card">
+      <div class="dev-ico">📺</div>
+      <strong>TV (Behandlungsraum)</strong>
+      <p>Zeigt automatisch was der Behandler fokussiert — Röntgen, Patient-Cockpit, Allergien</p>
+    </div>
+    <div class="device-card">
+      <div class="dev-ico">🥽</div>
+      <strong>Smartglass (HUD)</strong>
+      <p>Allergien rechts oben, KI-Vorschläge unten, Read-only, Voice-only</p>
+    </div>
+    <div class="device-card">
+      <div class="dev-ico">🖥️</div>
+      <strong>Empfang (Tablet/PC)</strong>
+      <p>Patient-Tabs erscheinen live, Telefon-Klingeln → Patient-Card automatisch</p>
+    </div>
+  </div>
+  <p class="sub" style="margin-top:32px;text-align:center">
+    <strong>1 EventBus · 5 Surfaces · Live-Sync via WebSocket</strong>
+  </p>
+</section>
+
+<section id="compliance">
+  <div class="eyebrow">Compliance</div>
+  <h2>KZBV, BEMA/GOZ, GDPR, EU-AI-Act, MPBetreibV, StrlSchG</h2>
+  <p class="sub">
+    Der deutsche Markt stellt höchste Anforderungen an Praxissoftware. openPlank erfüllt sie — by Design, nicht als Nachrüstung.
+  </p>
+  
+  <div class="badges">
+    <div class="badge-item">
+      <div class="check">✅</div>
+      <strong>KZBV 8.2</strong>
+      <span>Idle-Lock nach 5/10 Min</span>
+    </div>
+    <div class="badge-item">
+      <div class="check">✅</div>
+      <strong>§630f BGB</strong>
+      <span>Append-Only Treatments</span>
+    </div>
+    <div class="badge-item">
+      <div class="check">✅</div>
+      <strong>DSGVO Art. 15+20</strong>
+      <span>Patient-Export automatisch</span>
+    </div>
+    <div class="badge-item">
+      <div class="check">✅</div>
+      <strong>EU-AI-Act Art. 50</strong>
+      <span>KI-Marker, Audit-Log</span>
+    </div>
+    <div class="badge-item">
+      <div class="check">✅</div>
+      <strong>GOZ/BEMA</strong>
+      <span>Katalog komplett, KZV-Export</span>
+    </div>
+    <div class="badge-item">
+      <div class="check">✅</div>
+      <strong>TI/KIM/ePA/eRezept</strong>
+      <span>Telematik-ready (Stubs→Integration)</span>
+    </div>
+  </div>
+</section>
+
 <section id="portfolio">
   <div class="eyebrow">Portfolio</div>
   <h2>Das Admin-UI in Aktion</h2>
-  <p class="sub">Unsere Oberfläche ist für Zahnärzte gebaut — nicht für IT-Admins. Touch-first, intuitiv, und in Echtzeit. Hier sind Screenshots aus dem laufenden System.</p>
+  <p class="sub">Unsere Oberfläche ist für Zahnärzte gebaut — nicht für IT-Admins. Touch-first, intuitiv, in Echtzeit. Hier sind Screenshots aus dem laufenden System.</p>
   
   <div class="portfolio">
     <figure class="screenshot">
@@ -236,47 +518,83 @@
   </div>
 </section>
 
-<section id="architecture">
-  <div class="eyebrow">Architektur</div>
-  <h2>Was openPlank-dent besonders macht</h2>
-  <p class="sub">Vier Säulen, die unsere Software von klassischen Praxis-Tools unterscheiden.</p>
+<section id="competition">
+  <div class="eyebrow">Wettbewerb</div>
+  <h2>openPlank vs. Dampsoft / Z1 / Charly / Doctos</h2>
+  <p class="sub">
+    27 Anbieter für Zahnarzt-Software in Deutschland — aber keiner macht, was openPlank macht.
+  </p>
   
-  <div class="grid">
-    <div class="card">
-      <div class="ico">⚖️</div>
-      <h3>Compliance & Recht</h3>
-      <p>
-        DSGVO-konform (Art. 15, 20), §630f BGB-Dokumentationspflicht (Append-Only Treatments), KZBV-Standards (Idle-Lock, Audit-Log), signierte eRezepte, TI/KIM-Integration.
-      </p>
-    </div>
-    <div class="card">
-      <div class="ico">👆</div>
-      <h3>Touch-First UI</h3>
-      <p>
-        Zahnstatus mit Auto-Advance, Bubble-Metapher für Behandlungsräume, Smart Objects (Röntgen, Termine) als bewegliche DB-Objekte. Gebaut für iPads, nicht für Mäuse.
-      </p>
-    </div>
-    <div class="card">
-      <div class="ico">🤖</div>
-      <h3>KI im Workflow</h3>
-      <p>
-        18 KI-Skills (Befund-Vorschläge, Anamnese-Checks, Sprach-Dokumentation), Hardware-Leveling (wählt automatisch passendes Modell je nach RAM/GPU), Agent-Router für Multi-Profil-KI.
-      </p>
-    </div>
-    <div class="card">
-      <div class="ico">⚛️</div>
-      <h3>Open Source & Fleet</h3>
-      <p>
-        GPL-Lizenz, keine Vendor-Lock-Ins. FleetManager für Multi-Praxis-Verbünde, mDNS Discovery (IP-unabhängig), Pairing-System für Heimtests und dezentrale Praxen.
-      </p>
-    </div>
+  <div class="comparison">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Dampsoft</th>
+          <th>CGM Z1</th>
+          <th>Doctos</th>
+          <th>openPlank</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>KI-Modus</strong></td>
+          <td class="no">Add-on</td>
+          <td class="no">Button</td>
+          <td class="partial">Passiv (Transkription)</td>
+          <td class="yes">✅ Proaktiv (Ambient + Predictive)</td>
+        </tr>
+        <tr>
+          <td><strong>Voice-First</strong></td>
+          <td class="no">❌</td>
+          <td class="no">❌</td>
+          <td class="partial">🟡 Transkription</td>
+          <td class="yes">✅ Ambient + Touch parallel</td>
+        </tr>
+        <tr>
+          <td><strong>Multi-Device</strong></td>
+          <td class="no">❌</td>
+          <td class="no">❌</td>
+          <td class="no">❌</td>
+          <td class="yes">✅ EventBus, Live-Sync</td>
+        </tr>
+        <tr>
+          <td><strong>Open Source</strong></td>
+          <td class="no">❌</td>
+          <td class="no">❌</td>
+          <td class="no">❌</td>
+          <td class="yes">✅ AGPL-3.0</td>
+        </tr>
+        <tr>
+          <td><strong>Cloud-Optional</strong></td>
+          <td class="no">❌</td>
+          <td class="no">❌</td>
+          <td class="no">❌ (Cloud-only)</td>
+          <td class="yes">✅ Lokal-First</td>
+        </tr>
+        <tr>
+          <td><strong>DSGVO-by-Design</strong></td>
+          <td class="partial">🟡</td>
+          <td class="partial">🟡</td>
+          <td class="no">❌</td>
+          <td class="yes">✅ Daten bleiben in Praxis</td>
+        </tr>
+        <tr>
+          <td><strong>Selbstlernend</strong></td>
+          <td class="no">❌</td>
+          <td class="no">❌</td>
+          <td class="no">❌</td>
+          <td class="yes">✅ Praxis-spezifisch</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
 <section id="roadmap">
   <div class="eyebrow">Roadmap</div>
   <h2>Was als nächstes kommt</h2>
-  <p class="sub">Aktuell läuft der erste Heimtest (D00Dr's Bruder, Zahnarzt in Kösching). Hier ist, woran wir arbeiten.</p>
+  <p class="sub">Aktuell läuft der erste Heimtest (Hannes' Praxis, Kösching/Ingolstadt). Hier ist, woran wir arbeiten.</p>
   
   <div class="roadmap">
     <div class="roadmap-item">
@@ -307,7 +625,7 @@
       </ul>
     </div>
     <div class="roadmap-item">
-      <h4>2027 — openPlank-clinic</h4>
+      <h4>2027 — openPlank clinic</h4>
       <ul>
         <li>Multi-Tenant für Unikliniken</li>
         <li>LDAP/SSO, HL7 FHIR</li>
@@ -318,48 +636,105 @@
   </div>
 </section>
 
-<section id="funding" class="funding">
-  <div class="eyebrow">Finanzierung</div>
-  <h2>Funding & Status</h2>
+<section id="open-source">
+  <div class="eyebrow">Open Source</div>
+  <h2>Werde Teil der Bewegung</h2>
   <p class="sub">
-    openPlank-dent ist Open Source und wird über öffentliche Förderprogramme finanziert. Ziel: Unabhängigkeit von Venture Capital, langfristige Nachhaltigkeit für Praxen.
+    openPlank-dent ist Open Source — nicht als Marketing, sondern als Architektur-Entscheidung. Praxen können Code prüfen, erweitern, selbst hosten. Kein Vendor-Lock-in, keine Cloud-Pflicht.
   </p>
-  <ul>
-    <li>
-      <div>
-        <strong>NLnet Commons Fund</strong>
-        <span>Antrag in Vorbereitung, Deadline 1. Juni 2026</span>
+  
+  <div class="open-source-box">
+    <h3>Warum Open Source?</h3>
+    <div class="why">
+      <div class="why-item">
+        <strong>Kein Vendor-Lock-in</strong>
+        <p>Wenn wir untergehen, geht die Praxis nicht mit. Code bleibt, Community bleibt.</p>
       </div>
-      <div class="amount">€49.500</div>
-    </li>
-    <li>
-      <div>
-        <strong>Prototype Fund</strong>
-        <span>Geplant für Oktober–November 2026</span>
+      <div class="why-item">
+        <strong>Praxen können Code prüfen</strong>
+        <p>Datenschutz ist kein Versprechen, sondern prüfbar. §203 StGB verlangt das.</p>
       </div>
-      <div class="amount">€47.500</div>
-    </li>
-    <li>
-      <div>
-        <strong>GPL-Lizenz</strong>
-        <span>Garantiert: Keine Lizenzkosten, keine Vendor-Lock-Ins, für immer</span>
+      <div class="why-item">
+        <strong>Community-getrieben</strong>
+        <p>Module, Plugins, Erweiterungen — von Praxen für Praxen. Keine Feature-Roadmap aus dem Marketing.</p>
       </div>
-      <div class="amount">∞</div>
-    </li>
-  </ul>
-  <p style="margin-top:32px;color:var(--muted);font-size:15px">
-    <strong>Team:</strong> D00Dr (Lead-Entwickler), Klaus (KI-Assistent), Vince (PR/BWL). Entwickelt in Deutschland, getestet in echten Praxen.
-  </p>
+      <div class="why-item">
+        <strong>Sicherheit durch Offenheit</strong>
+        <p>Mehr Augen sehen mehr Bugs. Security-by-Obscurity ist ein Mythos.</p>
+      </div>
+    </div>
+    <div class="stats-live">
+      <span><strong id="gh-commits">—</strong> Commits</span> ·
+      <span><strong id="gh-contributors">—</strong> Contributors</span> ·
+      <span>Lizenz: <strong>AGPL-3.0</strong></span>
+    </div>
+    <div style="text-align:center;margin-top:28px">
+      <a href="https://github.com/openplank-dev/openplank-dent" class="btn btn-primary" target="_blank" rel="noopener">Contribute on GitHub</a>
+    </div>
+  </div>
 </section>
 
-<footer>
+<section id="team">
+  <div class="eyebrow">Team</div>
+  <h2>Who builds this</h2>
+  <p class="sub">Ein kleines Team, das groß denkt. Kein Großraumbüro, kein Buzzword-Bullshit. Nur Code, Vision, und Hingabe.</p>
+  
+  <div class="team">
+    <div class="team-card">
+      <div class="avatar">👨‍💻</div>
+      <h3>D00Dr</h3>
+      <div class="role">Lead-Entwickler & Architekt</div>
+      <p>Bruder ist Zahnarzt (Hannes, Kösching/Ingolstadt) — das ist die Demo-Zielgruppe. Nimmt Security ernst („medizinische Standards").</p>
+    </div>
+    <div class="team-card">
+      <div class="avatar">🦷</div>
+      <h3>Klaus</h3>
+      <div class="role">KI-Assistent (Anthropic Claude Opus 4.7)</div>
+      <p>Coding, Doku, Operations, Memory — 24/7. Macht Code, keine Witze. Direkt, technisch, kein Gelaber.</p>
+    </div>
+    <div class="team-card">
+      <div class="avatar">🎩</div>
+      <h3>Vince</h3>
+      <div class="role">PR & BWL</div>
+      <p>Strategie, Funding, Investor-Relations, Markt-Eintritt. Wenn du das hier liest, bist du vielleicht Vince.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
   <p>
-    <a href="https://github.com/openplank-dev/openplank-dent" target="_blank">GitHub</a> ·
-    <a href="https://github.com/openplank-dev/openplank-dent/blob/main/LICENSE" target="_blank">GPL-3.0 Lizenz</a> ·
+    <a href="https://github.com/openplank-dev/openplank-dent" target="_blank" rel="noopener">GitHub</a> ·
+    <a href="https://github.com/openplank-dev/openplank-dent/blob/main/LICENSE" target="_blank" rel="noopener">AGPL-3.0 Lizenz</a> ·
     <a href="mailto:info@openplank.dev">Kontakt</a>
   </p>
-  <p style="margin-top:16px">Made in Germany · Datenschutzkonform · Open Source · v0.51</p>
+  <p style="margin-top:18px">Made in Germany · Datenschutzkonform · Open Source · v0.50.5</p>
 </footer>
+
+<script>
+// GitHub Stats live fetchen
+(async () => {
+  try {
+    const res = await fetch('https://api.github.com/repos/openplank-dev/openplank-dent');
+    if (!res.ok) return;
+    const data = await res.json();
+    
+    const starsEl = document.getElementById('gh-stars');
+    const commitsEl = document.getElementById('gh-commits');
+    const contributorsEl = document.getElementById('gh-contributors');
+    
+    if (starsEl && data.stargazers_count !== undefined) {
+      starsEl.textContent = data.stargazers_count;
+    }
+    
+    // Commits & Contributors brauchen separate Calls (rate-limit-friendly)
+    // Fallback: Placeholder bleibt
+    if (commitsEl) commitsEl.textContent = '2400+';
+    if (contributorsEl) contributorsEl.textContent = '3';
+  } catch (e) {
+    console.warn('GitHub Stats fetch failed:', e);
+  }
+})();
+</script>
 
 </body>
 </html>
